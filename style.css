@@ -939,3 +939,48 @@ body {
   }
 
 }
+
+/* ==============================
+   商品削除
+============================== */
+
+.delete-area {
+  margin-top: 28px;
+
+  padding-top: 20px;
+
+  border-top: 1px solid #e1e3e6;
+}
+
+
+.delete-item-button {
+  width: 100%;
+
+  min-height: 46px;
+
+  border: 1px solid #c94343;
+
+  background: #ffffff;
+
+  color: #b32626;
+
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+.delete-item-button:hover {
+  background: #fff3f3;
+}
+
+
+.delete-item-button:disabled {
+  opacity: 0.5;
+
+  cursor: default;
+}
