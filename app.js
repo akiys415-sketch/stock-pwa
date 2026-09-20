@@ -53,6 +53,8 @@ let itemImageUrlInput;
 
 let imagePreview;
 
+let deleteItemButton;
+
 
 /* ==========================================
    初期化
@@ -187,6 +189,11 @@ function getDOMElements() {
       "imagePreview"
     );
 
+   deleteItemButton =
+  document.getElementById(
+    "deleteItemButton"
+  );
+
 }
 
 
@@ -211,6 +218,11 @@ function setupEvents() {
 
     }
   );
+
+   deleteItemButton.addEventListener(
+  "click",
+  deleteCurrentItem
+);
 
 
   /* --------------------------
@@ -1097,6 +1109,9 @@ function openNewItemEditor() {
 
   imagePreview.innerHTML =
     "画像なし";
+
+   deleteItemButton.hidden =
+  true;
 
 
   editorModal.hidden =
