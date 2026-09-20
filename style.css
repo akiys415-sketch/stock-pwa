@@ -661,3 +661,281 @@ body {
   }
 
 }
+
+/* ==============================
+   ヘッダー操作
+============================== */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.add-item-button {
+  border: 0;
+
+  background: #781313;
+  color: white;
+
+  border-radius: 9px;
+
+  padding: 10px 13px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+/* ==============================
+   商品編集ボタン
+============================== */
+
+.edit-item-button {
+  margin-top: 7px;
+
+  border: 1px solid #d5d8dd;
+
+  background: #ffffff;
+
+  border-radius: 7px;
+
+  padding: 5px 10px;
+
+  color: #555c66;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+
+/* ==============================
+   編集画面
+============================== */
+
+.editor-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1000;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background:
+    rgba(0, 0, 0, 0.45);
+}
+
+.editor-modal[hidden] {
+  display: none;
+}
+
+.editor-panel {
+  width: 100%;
+  max-width: 520px;
+
+  max-height: calc(100vh - 40px);
+
+  overflow-y: auto;
+
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 20px;
+}
+
+.editor-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+
+.editor-header h2 {
+  margin: 0;
+
+  font-size: 22px;
+}
+
+.editor-close-button {
+  width: 40px;
+  height: 40px;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background: #eeeeef;
+
+  font-size: 25px;
+
+  cursor: pointer;
+}
+
+
+/* ==============================
+   入力欄
+============================== */
+
+.form-group {
+  margin-bottom: 17px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+
+  padding: 12px 13px;
+
+  border: 1px solid #cfd3d9;
+
+  border-radius: 9px;
+
+  font-size: 17px;
+
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #781313;
+}
+
+.form-row {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 12px;
+}
+
+
+/* ==============================
+   画像プレビュー
+============================== */
+
+.image-preview {
+  min-height: 150px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background: #f2f3f5;
+
+  color: #9297a0;
+
+  font-size: 14px;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 220px;
+
+  object-fit: contain;
+}
+
+
+/* ==============================
+   保存ボタン
+============================== */
+
+.editor-buttons {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 10px;
+}
+
+.editor-buttons button {
+  height: 48px;
+
+  border-radius: 10px;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+.editor-cancel-button {
+  border: 1px solid #d4d6da;
+
+  background: #ffffff;
+}
+
+.editor-save-button {
+  border: 0;
+
+  background: #781313;
+  color: white;
+
+  font-weight: 700;
+}
+
+
+/* ==============================
+   スマホ編集画面
+============================== */
+
+@media (max-width: 600px) {
+
+  .app-header {
+    gap: 8px;
+  }
+
+  .add-item-button {
+    padding: 9px 10px;
+
+    font-size: 14px;
+  }
+
+  .editor-modal {
+    padding: 0;
+
+    align-items: stretch;
+  }
+
+  .editor-panel {
+    max-width: none;
+
+    min-height: 100vh;
+    max-height: none;
+
+    border-radius: 0;
+
+    padding:
+      calc(18px + env(safe-area-inset-top))
+      18px
+      calc(18px + env(safe-area-inset-bottom));
+  }
+
+}
