@@ -14,7 +14,6 @@ body {
 
 
 body {
-
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -23,12 +22,9 @@ body {
     Arial,
     sans-serif;
 
-  background:
-    #781313;
+  background: #781313;
 
-  color:
-    #20242b;
-
+  color: #20242b;
 }
 
 
@@ -38,7 +34,6 @@ body {
 ============================== */
 
 .app-container {
-
   width: 100%;
 
   max-width: 1400px;
@@ -47,9 +42,7 @@ body {
 
   margin: 0 auto;
 
-  background:
-    #f5f6f8;
-
+  background: #f5f6f8;
 }
 
 
@@ -59,12 +52,11 @@ body {
 ============================== */
 
 .app-header {
-
   position: sticky;
 
   top: 0;
 
-  z-index: 30;
+  z-index: 100;
 
   display: flex;
 
@@ -79,24 +71,19 @@ body {
     14px
     14px;
 
-  background:
-    #ffffff;
+  background: #ffffff;
 
   border-bottom:
     1px solid #dfe2e7;
-
 }
 
 
 .header-title-area {
-
   min-width: 0;
-
 }
 
 
 .app-header h1 {
-
   margin: 0;
 
   font-size: 22px;
@@ -104,19 +91,15 @@ body {
   font-weight: 700;
 
   white-space: nowrap;
-
 }
 
 
 .item-count {
-
   margin-top: 3px;
 
   font-size: 13px;
 
-  color:
-    #717782;
-
+  color: #717782;
 }
 
 
@@ -126,25 +109,20 @@ body {
 ============================== */
 
 .header-actions {
-
   display: flex;
 
   align-items: center;
 
   gap: 7px;
-
 }
 
 
 .add-item-button {
-
   border: 0;
 
-  background:
-    #781313;
+  background: #781313;
 
-  color:
-    white;
+  color: white;
 
   border-radius: 9px;
 
@@ -159,17 +137,14 @@ body {
   white-space: nowrap;
 
   cursor: pointer;
-
 }
 
 
 .reload-button {
-
   border:
     1px solid #d2d5da;
 
-  background:
-    #ffffff;
+  background: #ffffff;
 
   border-radius: 9px;
 
@@ -182,7 +157,6 @@ body {
   white-space: nowrap;
 
   cursor: pointer;
-
 }
 
 
@@ -192,17 +166,17 @@ body {
 ============================== */
 
 .search-section {
+  margin-left: 58px;
 
   padding:
     14px
     14px
-    8px;
-
+    8px
+    5px;
 }
 
 
 #searchInput {
-
   width: 100%;
 
   border:
@@ -210,8 +184,7 @@ body {
 
   border-radius: 12px;
 
-  background:
-    white;
+  background: white;
 
   padding:
     13px
@@ -220,15 +193,11 @@ body {
   font-size: 17px;
 
   outline: none;
-
 }
 
 
 #searchInput:focus {
-
-  border-color:
-    #781313;
-
+  border-color: #781313;
 }
 
 
@@ -238,24 +207,23 @@ body {
 ============================== */
 
 .option-section {
+  margin-left: 58px;
 
   padding:
     4px
     14px
-    12px;
-
+    12px
+    5px;
 }
 
 
 .order-filter-button {
-
   width: 100%;
 
   border:
     1px solid #c9ccd2;
 
-  background:
-    #ffffff;
+  background: #ffffff;
 
   border-radius: 10px;
 
@@ -264,23 +232,17 @@ body {
   font-size: 16px;
 
   cursor: pointer;
-
 }
 
 
 .order-filter-button.active {
+  background: #f1dede;
 
-  background:
-    #f1dede;
+  color: #781313;
 
-  color:
-    #781313;
-
-  border-color:
-    #781313;
+  border-color: #781313;
 
   font-weight: 700;
-
 }
 
 
@@ -290,75 +252,96 @@ body {
 ============================== */
 
 .inventory-layout {
-
-  display: grid;
-
-  grid-template-columns:
-    58px
-    minmax(0, 1fr);
-
-  align-items: start;
-
+  display: block;
 }
 
 
 .inventory-main {
-
   min-width: 0;
 
+  margin-left: 58px;
 }
 
 
 
 /* ==============================
    左カナメニュー
+   常に固定
 ============================== */
 
 .kana-sidebar {
+  position: fixed;
 
-  position: sticky;
+  left: max(
+    5px,
+    env(safe-area-inset-left)
+  );
 
-  top: 82px;
+  top: calc(
+    88px +
+    env(safe-area-inset-top)
+  );
 
-  z-index: 20;
+  z-index: 80;
 
-  align-self: start;
+  width: 52px;
+
+  max-height:
+    calc(
+      100vh -
+      100px -
+      env(safe-area-inset-top) -
+      env(safe-area-inset-bottom)
+    );
+
+  overflow-y: auto;
 
   padding:
-    6px
-    5px
-    20px;
+    4px
+    3px
+    10px;
 
-  background:
-    #f5f6f8;
+  background: #f5f6f8;
 
+  border-radius:
+    0
+    10px
+    10px
+    0;
+
+  scrollbar-width: none;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+
+.kana-sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 
 .kana-filter {
-
   display: flex;
 
   flex-direction: column;
 
-  gap: 5px;
-
+  gap: 4px;
 }
 
 
 .kana-button {
+  flex: 0 0 auto;
 
-  width: 46px;
+  width: 44px;
 
-  height: 46px;
+  height: 44px;
 
   padding: 0;
 
   border:
     1px solid #d2d5da;
 
-  background:
-    #ffffff;
+  background: #ffffff;
 
   border-radius: 9px;
 
@@ -368,34 +351,28 @@ body {
 
   cursor: pointer;
 
+  touch-action: manipulation;
 }
 
 
 .kana-button.active {
+  color: white;
 
-  color:
-    white;
+  background: #781313;
 
-  background:
-    #781313;
-
-  border-color:
-    #781313;
+  border-color: #781313;
 
   font-weight: 700;
-
 }
 
 
 
 /* ==============================
-   PC用ヘッダー
+   PC用一覧ヘッダー
 ============================== */
 
 .desktop-table-header {
-
   display: none;
-
 }
 
 
@@ -405,7 +382,6 @@ body {
 ============================== */
 
 .inventory-list {
-
   display: flex;
 
   flex-direction: column;
@@ -417,7 +393,6 @@ body {
     12px
     40px
     4px;
-
 }
 
 
@@ -427,7 +402,6 @@ body {
 ============================== */
 
 .item-card {
-
   position: relative;
 
   display: grid;
@@ -438,8 +412,7 @@ body {
 
   gap: 13px;
 
-  background:
-    white;
+  background: white;
 
   border-radius: 14px;
 
@@ -453,23 +426,17 @@ body {
     1px
     3px
     rgba(0, 0, 0, 0.05);
-
 }
 
 
-/*
-発注必要商品
-スマホでもPCでも薄いピンク
+/* 発注必要
+   スマホでもPCでも薄いピンク
 */
 
 .item-card.order-needed {
+  background: #fff3f3;
 
-  background:
-    #fff3f3;
-
-  border-color:
-    #d99292;
-
+  border-color: #d99292;
 }
 
 
@@ -479,7 +446,6 @@ body {
 ============================== */
 
 .item-image-wrapper {
-
   width: 88px;
 
   height: 112px;
@@ -494,29 +460,23 @@ body {
 
   border-radius: 9px;
 
-  background:
-    #f0f1f3;
-
+  background: #f0f1f3;
 }
 
 
 .item-image {
-
   width: 100%;
 
   height: 100%;
 
   object-fit: contain;
-
 }
 
 
 .image-placeholder {
-
   font-size: 34px;
 
   opacity: 0.45;
-
 }
 
 
@@ -526,14 +486,11 @@ body {
 ============================== */
 
 .item-info {
-
   min-width: 0;
-
 }
 
 
 .item-name {
-
   margin-bottom: 4px;
 
   font-size: 18px;
@@ -543,17 +500,13 @@ body {
   font-weight: 700;
 
   word-break: break-word;
-
 }
 
 
 .item-kana {
-
-  color:
-    #8a8f98;
+  color: #8a8f98;
 
   font-size: 12px;
-
 }
 
 
@@ -563,14 +516,18 @@ body {
 ============================== */
 
 .edit-item-button {
-
   margin-top: 8px;
 
   border:
     1px solid #d5d8dd;
 
   background:
-    rgba(255, 255, 255, 0.9);
+    rgba(
+      255,
+      255,
+      255,
+      0.9
+    );
 
   border-radius: 7px;
 
@@ -578,13 +535,11 @@ body {
     5px
     10px;
 
-  color:
-    #555c66;
+  color: #555c66;
 
   font-size: 12px;
 
   cursor: pointer;
-
 }
 
 
@@ -594,7 +549,6 @@ body {
 ============================== */
 
 .stock-area {
-
   margin-top: 11px;
 
   display: flex;
@@ -602,28 +556,22 @@ body {
   align-items: baseline;
 
   gap: 5px;
-
 }
 
 
 .stock-number {
-
   font-size: 34px;
 
   line-height: 1;
 
   font-weight: 700;
-
 }
 
 
 .stock-unit {
-
-  color:
-    #646a73;
+  color: #646a73;
 
   font-size: 15px;
-
 }
 
 
@@ -633,7 +581,6 @@ body {
 ============================== */
 
 .stock-status {
-
   display: inline-block;
 
   margin-top: 8px;
@@ -644,38 +591,27 @@ body {
 
   border-radius: 6px;
 
-  background:
-    #e9f3eb;
+  background: #e9f3eb;
 
-  color:
-    #327342;
+  color: #327342;
 
   font-size: 12px;
 
   font-weight: 600;
-
 }
 
 
 .stock-status.warning {
+  background: #f2d7d7;
 
-  background:
-    #f2d7d7;
-
-  color:
-    #9d2d2d;
-
+  color: #9d2d2d;
 }
 
 
 .stock-status.zero {
+  background: #333840;
 
-  background:
-    #333840;
-
-  color:
-    white;
-
+  color: white;
 }
 
 
@@ -685,7 +621,6 @@ body {
 ============================== */
 
 .stock-controls {
-
   grid-column:
     1 / -1;
 
@@ -698,12 +633,10 @@ body {
   gap: 10px;
 
   margin-top: 2px;
-
 }
 
 
 .stock-button {
-
   height: 52px;
 
   border: 0;
@@ -717,38 +650,27 @@ body {
   cursor: pointer;
 
   touch-action: manipulation;
-
 }
 
 
 .stock-button.minus {
+  background: #eceef1;
 
-  background:
-    #eceef1;
-
-  color:
-    #333842;
-
+  color: #333842;
 }
 
 
 .stock-button.plus {
+  background: #781313;
 
-  background:
-    #781313;
-
-  color:
-    white;
-
+  color: white;
 }
 
 
 .stock-button:disabled {
-
   opacity: 0.45;
 
   cursor: default;
-
 }
 
 
@@ -759,18 +681,15 @@ body {
 
 .loading,
 .empty-message {
-
   padding:
     50px
     20px;
 
   text-align: center;
 
-  color:
-    #737982;
+  color: #737982;
 
   font-size: 16px;
-
 }
 
 
@@ -780,7 +699,6 @@ body {
 ============================== */
 
 .toast {
-
   position: fixed;
 
   left: 50%;
@@ -813,8 +731,7 @@ body {
       0.92
     );
 
-  color:
-    white;
+  color: white;
 
   font-size: 14px;
 
@@ -825,12 +742,10 @@ body {
   transition:
     opacity 0.2s,
     transform 0.2s;
-
 }
 
 
 .toast.show {
-
   opacity: 1;
 
   transform:
@@ -838,7 +753,6 @@ body {
       -50%,
       0
     );
-
 }
 
 
@@ -848,7 +762,6 @@ body {
 ============================== */
 
 .editor-modal {
-
   position: fixed;
 
   inset: 0;
@@ -870,19 +783,15 @@ body {
       0,
       0.45
     );
-
 }
 
 
 .editor-modal[hidden] {
-
   display: none;
-
 }
 
 
 .editor-panel {
-
   width: 100%;
 
   max-width: 520px;
@@ -895,18 +804,15 @@ body {
 
   overflow-y: auto;
 
-  background:
-    white;
+  background: white;
 
   border-radius: 16px;
 
   padding: 20px;
-
 }
 
 
 .editor-header {
-
   display: flex;
 
   align-items: center;
@@ -914,21 +820,17 @@ body {
   justify-content: space-between;
 
   margin-bottom: 20px;
-
 }
 
 
 .editor-header h2 {
-
   margin: 0;
 
   font-size: 22px;
-
 }
 
 
 .editor-close-button {
-
   width: 40px;
 
   height: 40px;
@@ -937,13 +839,11 @@ body {
 
   border-radius: 50%;
 
-  background:
-    #eeeeef;
+  background: #eeeeef;
 
   font-size: 25px;
 
   cursor: pointer;
-
 }
 
 
@@ -953,14 +853,11 @@ body {
 ============================== */
 
 .form-group {
-
   margin-bottom: 17px;
-
 }
 
 
 .form-group label {
-
   display: block;
 
   margin-bottom: 6px;
@@ -968,12 +865,10 @@ body {
   font-size: 14px;
 
   font-weight: 600;
-
 }
 
 
 .form-group input {
-
   width: 100%;
 
   padding:
@@ -988,20 +883,15 @@ body {
   font-size: 17px;
 
   outline: none;
-
 }
 
 
 .form-group input:focus {
-
-  border-color:
-    #781313;
-
+  border-color: #781313;
 }
 
 
 .form-row {
-
   display: grid;
 
   grid-template-columns:
@@ -1009,7 +899,6 @@ body {
     1fr;
 
   gap: 12px;
-
 }
 
 
@@ -1019,7 +908,6 @@ body {
 ============================== */
 
 .image-preview {
-
   min-height: 150px;
 
   display: flex;
@@ -1034,25 +922,20 @@ body {
 
   border-radius: 10px;
 
-  background:
-    #f2f3f5;
+  background: #f2f3f5;
 
-  color:
-    #9297a0;
+  color: #9297a0;
 
   font-size: 14px;
-
 }
 
 
 .image-preview img {
-
   max-width: 100%;
 
   max-height: 220px;
 
   object-fit: contain;
-
 }
 
 
@@ -1062,7 +945,6 @@ body {
 ============================== */
 
 .editor-buttons {
-
   display: grid;
 
   grid-template-columns:
@@ -1070,12 +952,10 @@ body {
     1fr;
 
   gap: 10px;
-
 }
 
 
 .editor-buttons button {
-
   height: 48px;
 
   border-radius: 10px;
@@ -1083,33 +963,25 @@ body {
   font-size: 16px;
 
   cursor: pointer;
-
 }
 
 
 .editor-cancel-button {
-
   border:
     1px solid #d4d6da;
 
-  background:
-    #ffffff;
-
+  background: #ffffff;
 }
 
 
 .editor-save-button {
-
   border: 0;
 
-  background:
-    #781313;
+  background: #781313;
 
-  color:
-    white;
+  color: white;
 
   font-weight: 700;
-
 }
 
 
@@ -1119,19 +991,16 @@ body {
 ============================== */
 
 .delete-area {
-
   margin-top: 28px;
 
   padding-top: 20px;
 
   border-top:
     1px solid #e1e3e6;
-
 }
 
 
 .delete-item-button {
-
   width: 100%;
 
   min-height: 46px;
@@ -1139,11 +1008,9 @@ body {
   border:
     1px solid #c94343;
 
-  background:
-    #ffffff;
+  background: #ffffff;
 
-  color:
-    #b32626;
+  color: #b32626;
 
   border-radius: 10px;
 
@@ -1152,24 +1019,18 @@ body {
   font-weight: 600;
 
   cursor: pointer;
-
 }
 
 
 .delete-item-button:hover {
-
-  background:
-    #fff3f3;
-
+  background: #fff3f3;
 }
 
 
 .delete-item-button:disabled {
-
   opacity: 0.5;
 
   cursor: default;
-
 }
 
 
@@ -1181,59 +1042,76 @@ body {
 @media (max-width: 600px) {
 
   .app-header {
-
     gap: 6px;
-
   }
 
 
   .app-header h1 {
-
     font-size: 19px;
-
   }
 
 
   .item-count {
-
     font-size: 12px;
-
   }
 
 
   .add-item-button {
-
     padding:
       9px
       9px;
 
     font-size: 13px;
-
   }
 
 
   .reload-button {
-
     padding:
       9px
       9px;
 
     font-size: 13px;
-
   }
 
 
-  .editor-modal {
+  /*
+   小さいスマホでも
+   カナを全部扱いやすくする
+  */
 
+  .kana-sidebar {
+    width: 50px;
+  }
+
+
+  .kana-button {
+    width: 42px;
+
+    height: 42px;
+
+    font-size: 16px;
+  }
+
+
+  .search-section,
+  .option-section,
+  .inventory-main {
+    margin-left: 54px;
+  }
+
+
+  /*
+   編集画面は全画面
+  */
+
+  .editor-modal {
     padding: 0;
 
     align-items: stretch;
-
   }
 
 
   .editor-panel {
-
     max-width: none;
 
     min-height: 100vh;
@@ -1252,7 +1130,6 @@ body {
         18px +
         env(safe-area-inset-bottom)
       );
-
   }
 
 }
@@ -1266,14 +1143,11 @@ body {
 @media (min-width: 850px) {
 
   body {
-
     padding: 22px;
-
   }
 
 
   .app-container {
-
     min-height:
       calc(
         100vh -
@@ -1282,97 +1156,111 @@ body {
 
     border-radius: 15px;
 
-    overflow: hidden;
-
+    overflow: visible;
   }
 
 
   .app-header {
-
-    position: relative;
-
     padding:
       18px
       24px;
-
   }
 
 
   .app-header h1 {
-
     font-size: 25px;
-
   }
 
 
-  .search-section {
 
-    padding:
-      18px
-      24px
-      8px;
-
-  }
-
-
-  .option-section {
-
-    padding:
-      8px
-      24px
-      18px;
-
-  }
-
-
-  .order-filter-button {
-
-    width: auto;
-
-    min-width: 160px;
-
-  }
-
-
-  .inventory-layout {
-
-    grid-template-columns:
-      66px
-      minmax(0, 1fr);
-
-  }
-
+  /* ==============================
+     PC カナ固定位置
+  ============================== */
 
   .kana-sidebar {
+    left:
+      max(
+        22px,
+        calc(
+          (100vw - 1400px) / 2
+        )
+      );
 
-    top: 20px;
+    top: 105px;
+
+    width: 58px;
 
     padding:
-      0
-      8px
-      20px;
-
+      4px
+      4px
+      12px;
   }
 
 
   .kana-button {
-
     width: 50px;
 
     height: 46px;
 
     font-size: 17px;
-
   }
 
 
 
-  /* --------------------------
+  /* ==============================
+     PC 検索
+  ============================== */
+
+  .search-section {
+    margin-left: 66px;
+
+    padding:
+      18px
+      24px
+      8px
+      8px;
+  }
+
+
+
+  /* ==============================
+     PC 発注
+  ============================== */
+
+  .option-section {
+    margin-left: 66px;
+
+    padding:
+      8px
+      24px
+      18px
+      8px;
+  }
+
+
+  .order-filter-button {
+    width: auto;
+
+    min-width: 160px;
+  }
+
+
+
+  /* ==============================
+     PC商品領域
+  ============================== */
+
+  .inventory-main {
+    margin-left: 66px;
+  }
+
+
+
+  /* ==============================
      PC一覧タイトル
-  -------------------------- */
+  ============================== */
 
   .desktop-table-header {
-
     display: grid;
 
     grid-template-columns:
@@ -1396,8 +1284,7 @@ body {
       10px
       14px;
 
-    color:
-      #747a84;
+    color: #747a84;
 
     font-size: 13px;
 
@@ -1405,17 +1292,15 @@ body {
 
     border-bottom:
       1px solid #d5d8dd;
-
   }
 
 
 
-  /* --------------------------
+  /* ==============================
      PC商品一覧
-  -------------------------- */
+  ============================== */
 
   .inventory-list {
-
     gap: 0;
 
     padding:
@@ -1423,12 +1308,10 @@ body {
       24px
       40px
       8px;
-
   }
 
 
   .item-card {
-
     grid-template-columns:
       80px
       minmax(250px, 1fr)
@@ -1446,74 +1329,56 @@ body {
 
     border-radius: 0;
 
-    border:
-      0;
+    border: 0;
 
     border-bottom:
       1px solid #e0e2e5;
 
     box-shadow: none;
-
   }
 
 
   .item-card.order-needed {
-
-    background:
-      #fff3f3;
+    background: #fff3f3;
 
     border-bottom-color:
       #e5bcbc;
-
   }
 
 
   .item-image-wrapper {
-
     width: 60px;
 
     height: 76px;
-
   }
 
 
   .item-name {
-
     font-size: 17px;
-
   }
 
 
   .item-kana {
-
     margin-top: 3px;
-
   }
 
 
   .stock-area {
-
     margin: 0;
-
   }
 
 
   .stock-number {
-
     font-size: 27px;
-
   }
 
 
   .stock-status {
-
     margin: 0;
-
   }
 
 
   .stock-controls {
-
     grid-column: auto;
 
     margin: 0;
@@ -1523,16 +1388,13 @@ body {
       1fr;
 
     gap: 8px;
-
   }
 
 
   .stock-button {
-
     height: 44px;
 
     font-size: 25px;
-
   }
 
 }
