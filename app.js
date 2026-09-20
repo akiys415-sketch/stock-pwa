@@ -1170,6 +1170,9 @@ function openEditItemEditor(id) {
   editorTitle.textContent =
     "商品編集";
 
+deleteItemButton.hidden =
+  false;
+
 
   itemNameInput.value =
     item.name || "";
@@ -1785,5 +1788,143 @@ function escapeHTML(value) {
       /'/g,
       "&#039;"
     );
+
+}
+
+/* ==========================================
+   商品削除
+========================================== */
+
+async function deleteCurrentItem() {
+
+  if (!editingItemId) {
+    return;
+  }
+
+
+  const item =
+    inventory.find(
+      product =>
+        String(product.id) ===
+        String(editingItemId)
+    );
+
+
+  if (!item) {
+    return;
+  }
+
+
+  const confirmed =
+    window.confirm(
+      `「${item.name}」を削除しますか？\n\nこの操作は元に戻せません。`
+    );
+
+
+  if (!confirmed) {
+    return;
+  }
+
+
+  const deletingId =
+    editingItemId;
+
+
+  deleteItemButton.disabled =
+    true;
+
+
+  deleteItemButton.textContent =
+    "削除中...";
+
+
+  try {
+
+    const response =
+      await fetch(
+        API_URL,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body:
+            JSON.stringify({
+              action: "delete",
+              id: deletingId
+            })
+        }
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        "削除に失敗しました"
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if (!data.success) {
+
+      throw new Error(
+        data.message ||
+        "削除に失敗しました"
+      );
+
+    }
+
+
+    inventory =
+      inventory.filter(
+        product =>
+          String(product.id) !==
+          String(deletingId)
+      );
+
+
+    closeEditor();
+
+
+    renderInventory();
+
+
+    showToast(
+      "商品を削除しました"
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "deleteCurrentItem error:",
+      error
+    );
+
+
+    showToast(
+      error.message ||
+      "削除に失敗しました"
+    );
+
+
+  } finally {
+
+    deleteItemButton.disabled =
+      false;
+
+
+    deleteItemButton.textContent =
+      "この商品を削除";
+
+  }
 
 }
