@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -10,77 +12,100 @@
 
   <title>酒在庫管理</title>
 
-<meta name="theme-color" content="#781313">
+  <meta
+    name="theme-color"
+    content="#781313"
+  >
 
-<meta
-  name="apple-mobile-web-app-capable"
-  content="yes"
->
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
 
-<meta
-  name="apple-mobile-web-app-status-bar-style"
-  content="default"
->
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="default"
+  >
 
-<meta
-  name="apple-mobile-web-app-title"
-  content="酒在庫"
->
+  <meta
+    name="apple-mobile-web-app-title"
+    content="酒在庫"
+  >
 
-<link
-  rel="apple-touch-icon"
-  href="./icons/icon-180.png"
->
+  <link
+    rel="apple-touch-icon"
+    href="./icons/icon-180.png"
+  >
 
-<link
-  rel="manifest"
-  href="./manifest.json"
->
+  <link
+    rel="manifest"
+    href="./manifest.json"
+  >
 
-<link
-  rel="stylesheet"
-  href="./style.css"
->
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  >
+
 </head>
+
 
 <body>
 
   <div class="app-container">
 
-    <!-- ヘッダー -->
+
+    <!-- ==============================
+         ヘッダー
+    =============================== -->
+
     <header class="app-header">
 
-      <div>
-        <h1>酒在庫管理</h1>
-        <div id="itemCount" class="item-count">
+      <div class="header-title-area">
+
+        <h1>
+          酒在庫管理
+        </h1>
+
+        <div
+          id="itemCount"
+          class="item-count"
+        >
           読み込み中...
         </div>
+
       </div>
+
 
       <div class="header-actions">
 
-  <button
-    id="addItemButton"
-    class="add-item-button"
-    type="button"
-  >
-    ＋ 商品追加
-  </button>
+        <button
+          id="addItemButton"
+          class="add-item-button"
+          type="button"
+        >
+          ＋ 商品追加
+        </button>
 
-  <button
-    id="reloadButton"
-    class="reload-button"
-    type="button"
-  >
-    更新
-  </button>
 
-</div>
+        <button
+          id="reloadButton"
+          class="reload-button"
+          type="button"
+        >
+          更新
+        </button>
+
+      </div>
 
     </header>
 
 
-    <!-- 検索 -->
+
+    <!-- ==============================
+         検索
+    =============================== -->
+
     <section class="search-section">
 
       <input
@@ -93,64 +118,11 @@
     </section>
 
 
-    <!-- カナ絞り込み -->
-    <section class="kana-section">
 
-      <div
-        id="kanaFilter"
-        class="kana-filter"
-      >
+    <!-- ==============================
+         発注フィルター
+    =============================== -->
 
-        <button class="kana-button active" data-kana="all">
-          全
-        </button>
-
-        <button class="kana-button" data-kana="a">
-          ア
-        </button>
-
-        <button class="kana-button" data-kana="ka">
-          カ
-        </button>
-
-        <button class="kana-button" data-kana="sa">
-          サ
-        </button>
-
-        <button class="kana-button" data-kana="ta">
-          タ
-        </button>
-
-        <button class="kana-button" data-kana="na">
-          ナ
-        </button>
-
-        <button class="kana-button" data-kana="ha">
-          ハ
-        </button>
-
-        <button class="kana-button" data-kana="ma">
-          マ
-        </button>
-
-        <button class="kana-button" data-kana="ya">
-          ヤ
-        </button>
-
-        <button class="kana-button" data-kana="ra">
-          ラ
-        </button>
-
-        <button class="kana-button" data-kana="wa">
-          ワ
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- 発注フィルター -->
     <section class="option-section">
 
       <button
@@ -164,235 +136,426 @@
     </section>
 
 
-    <!-- PC用タイトル -->
-    <div class="desktop-table-header">
 
-      <div>画像</div>
-      <div>商品名</div>
-      <div>在庫</div>
-      <div>状態</div>
-      <div>在庫変更</div>
+    <!-- ==============================
+         在庫エリア
+    =============================== -->
 
-    </div>
+    <div class="inventory-layout">
 
 
-    <!-- 商品一覧 -->
-    <main
-      id="inventoryList"
-      class="inventory-list"
-    >
+      <!-- 左側カナメニュー -->
 
-      <div class="loading">
-        在庫を読み込んでいます...
+      <aside class="kana-sidebar">
+
+        <div
+          id="kanaFilter"
+          class="kana-filter"
+        >
+
+          <button
+            class="kana-button active"
+            data-kana="all"
+            type="button"
+          >
+            全
+          </button>
+
+
+          <button
+            class="kana-button"
+            data-kana="a"
+            type="button"
+          >
+            ア
+          </button>
+
+
+          <button
+            class="kana-button"
+            data-kana="ka"
+            type="button"
+          >
+            カ
+          </button>
+
+
+          <button
+            class="kana-button"
+            data-kana="sa"
+            type="button"
+          >
+            サ
+          </button>
+
+
+          <button
+            class="kana-button"
+            data-kana="ta"
+            type="button"
+          >
+            タ
+          </button>
+
+
+          <button
+            class="kana-button"
+            data-kana="na"
+            type="button"
+          >
+            ナ
+          </button>
+
+
+          <button
+            class="kana-button"
+            data-kana="ha"
+            type="button"
+          >
+            ハ
+          </button>
+
+
+          <button
+            class="kana-button"
+            data-kana="ma"
+            type="button"
+          >
+            マ
+          </button>
+
+
+          <button
+            class="kana-button"
+            data-kana="ya"
+            type="button"
+          >
+            ヤ
+          </button>
+
+
+          <button
+            class="kana-button"
+            data-kana="ra"
+            type="button"
+          >
+            ラ
+          </button>
+
+
+          <button
+            class="kana-button"
+            data-kana="wa"
+            type="button"
+          >
+            ワ
+          </button>
+
+        </div>
+
+      </aside>
+
+
+
+      <!-- 右側商品エリア -->
+
+      <div class="inventory-main">
+
+
+        <!-- PC用ヘッダー -->
+
+        <div class="desktop-table-header">
+
+          <div>
+            画像
+          </div>
+
+          <div>
+            商品名
+          </div>
+
+          <div>
+            在庫
+          </div>
+
+          <div>
+            状態
+          </div>
+
+          <div>
+            在庫変更
+          </div>
+
+        </div>
+
+
+
+        <!-- 商品一覧 -->
+
+        <main
+          id="inventoryList"
+          class="inventory-list"
+        >
+
+          <div class="loading">
+            在庫を読み込んでいます...
+          </div>
+
+        </main>
+
+
       </div>
 
-    </main>
+    </div>
 
   </div>
 
 
-  <!-- 通知 -->
+
+  <!-- ==============================
+       Toast
+  =============================== -->
+
   <div
     id="toast"
     class="toast"
   ></div>
 
 
-  <script src="./app.js"></script>
 
-<script>
-  if ("serviceWorker" in navigator) {
+  <!-- ==============================
+       商品追加・編集画面
+  =============================== -->
 
-    window.addEventListener(
-      "load",
-      () => {
+  <div
+    id="editorModal"
+    class="editor-modal"
+    hidden
+  >
 
-        navigator.serviceWorker
-          .register("./service-worker.js")
-          .then(registration => {
+    <div class="editor-panel">
 
-            console.log(
-              "Service Worker registered:",
-              registration.scope
-            );
 
-          })
-          .catch(error => {
+      <div class="editor-header">
 
-            console.error(
-              "Service Worker registration failed:",
-              error
-            );
+        <h2 id="editorTitle">
+          商品追加
+        </h2>
 
-          });
 
-      }
-    );
+        <button
+          id="closeEditorButton"
+          class="editor-close-button"
+          type="button"
+        >
+          ×
+        </button>
 
-  }
-</script>
-<!-- 商品追加・編集画面 -->
+      </div>
 
-<div
-  id="editorModal"
-  class="editor-modal"
-  hidden
->
 
-  <div class="editor-panel">
 
-    <div class="editor-header">
+      <form id="editorForm">
 
-      <h2 id="editorTitle">
-        商品追加
-      </h2>
 
-      <button
-        id="closeEditorButton"
-        class="editor-close-button"
-        type="button"
-      >
-        ×
-      </button>
+        <div class="form-group">
+
+          <label for="itemName">
+            商品名
+          </label>
+
+          <input
+            id="itemName"
+            type="text"
+            required
+            autocomplete="off"
+          >
+
+        </div>
+
+
+
+        <div class="form-group">
+
+          <label for="itemKana">
+            商品名カナ
+          </label>
+
+          <input
+            id="itemKana"
+            type="text"
+            required
+            autocomplete="off"
+            placeholder="例：ボンベイサファイア"
+          >
+
+        </div>
+
+
+
+        <div class="form-row">
+
+
+          <div class="form-group">
+
+            <label for="itemStock">
+              現在在庫
+            </label>
+
+            <input
+              id="itemStock"
+              type="number"
+              min="0"
+              step="1"
+              value="0"
+              required
+            >
+
+          </div>
+
+
+
+          <div class="form-group">
+
+            <label for="itemMinimumStock">
+              最低在庫
+            </label>
+
+            <input
+              id="itemMinimumStock"
+              type="number"
+              min="0"
+              step="1"
+              value="1"
+              required
+            >
+
+          </div>
+
+
+        </div>
+
+
+
+        <div class="form-group">
+
+          <label for="itemImageUrl">
+            商品画像URL
+          </label>
+
+          <input
+            id="itemImageUrl"
+            type="url"
+            autocomplete="off"
+            placeholder="https://..."
+          >
+
+        </div>
+
+
+
+        <div
+          id="imagePreview"
+          class="image-preview"
+        >
+          画像なし
+        </div>
+
+
+
+        <div class="editor-buttons">
+
+          <button
+            id="cancelEditorButton"
+            class="editor-cancel-button"
+            type="button"
+          >
+            キャンセル
+          </button>
+
+
+          <button
+            id="saveItemButton"
+            class="editor-save-button"
+            type="submit"
+          >
+            保存
+          </button>
+
+        </div>
+
+
+
+        <div class="delete-area">
+
+          <button
+            id="deleteItemButton"
+            class="delete-item-button"
+            type="button"
+            hidden
+          >
+            この商品を削除
+          </button>
+
+        </div>
+
+
+      </form>
 
     </div>
 
-
-    <form id="editorForm">
-
-      <div class="form-group">
-
-        <label for="itemName">
-          商品名
-        </label>
-
-        <input
-          id="itemName"
-          type="text"
-          required
-          autocomplete="off"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="itemKana">
-          商品名カナ
-        </label>
-
-        <input
-          id="itemKana"
-          type="text"
-          required
-          autocomplete="off"
-          placeholder="例：ボンベイサファイア"
-        >
-
-      </div>
-
-
-      <div class="form-row">
-
-        <div class="form-group">
-
-          <label for="itemStock">
-            現在在庫
-          </label>
-
-          <input
-            id="itemStock"
-            type="number"
-            min="0"
-            step="1"
-            value="0"
-            required
-          >
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label for="itemMinimumStock">
-            最低在庫
-          </label>
-
-          <input
-            id="itemMinimumStock"
-            type="number"
-            min="0"
-            step="1"
-            value="1"
-            required
-          >
-
-        </div>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="itemImageUrl">
-          商品画像URL
-        </label>
-
-        <input
-          id="itemImageUrl"
-          type="url"
-          autocomplete="off"
-          placeholder="https://..."
-        >
-
-      </div>
-
-
-      <div
-        id="imagePreview"
-        class="image-preview"
-      >
-        画像なし
-      </div>
-
-
-      <div class="editor-buttons">
-
-        <button
-          id="cancelEditorButton"
-          class="editor-cancel-button"
-          type="button"
-        >
-          キャンセル
-        </button>
-
-        <button
-          id="saveItemButton"
-          class="editor-save-button"
-          type="submit"
-        >
-          保存
-        </button>
-
-      </div>
-
-      <div class="delete-area">
-
-  <button
-    id="deleteItemButton"
-    class="delete-item-button"
-    type="button"
-  >
-    この商品を削除
-  </button>
-
-</div>
-
-    </form>
-
   </div>
 
-</div>
+
+
+  <!-- ==============================
+       JavaScript
+  =============================== -->
+
+  <script src="./app.js"></script>
+
+
+  <script>
+
+    if ("serviceWorker" in navigator) {
+
+      window.addEventListener(
+        "load",
+        () => {
+
+          navigator.serviceWorker
+            .register(
+              "./service-worker.js"
+            )
+            .then(
+              registration => {
+
+                console.log(
+                  "Service Worker registered:",
+                  registration.scope
+                );
+
+              }
+            )
+            .catch(
+              error => {
+
+                console.error(
+                  "Service Worker registration failed:",
+                  error
+                );
+
+              }
+            );
+
+        }
+      );
+
+    }
+
+  </script>
+
+
 </body>
+
 </html>
