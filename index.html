@@ -10,7 +10,37 @@
 
   <title>酒在庫管理</title>
 
-  <link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#781313">
+
+<meta
+  name="apple-mobile-web-app-capable"
+  content="yes"
+>
+
+<meta
+  name="apple-mobile-web-app-status-bar-style"
+  content="default"
+>
+
+<meta
+  name="apple-mobile-web-app-title"
+  content="酒在庫"
+>
+
+<link
+  rel="apple-touch-icon"
+  href="./icons/icon-180.png"
+>
+
+<link
+  rel="manifest"
+  href="./manifest.json"
+>
+
+<link
+  rel="stylesheet"
+  href="./style.css"
+>
 </head>
 
 <body>
@@ -156,7 +186,39 @@
   ></div>
 
 
-  <script src="app.js"></script>
+  <script src="./app.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+
+    window.addEventListener(
+      "load",
+      () => {
+
+        navigator.serviceWorker
+          .register("./service-worker.js")
+          .then(registration => {
+
+            console.log(
+              "Service Worker registered:",
+              registration.scope
+            );
+
+          })
+          .catch(error => {
+
+            console.error(
+              "Service Worker registration failed:",
+              error
+            );
+
+          });
+
+      }
+    );
+
+  }
+</script>
 
 </body>
 </html>
