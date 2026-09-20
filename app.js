@@ -46,6 +46,74 @@ const itemCount =
 const toast =
   document.getElementById("toast");
 
+const addItemButton =
+  document.getElementById(
+    "addItemButton"
+  );
+
+const editorModal =
+  document.getElementById(
+    "editorModal"
+  );
+
+const editorTitle =
+  document.getElementById(
+    "editorTitle"
+  );
+
+const editorForm =
+  document.getElementById(
+    "editorForm"
+  );
+
+const closeEditorButton =
+  document.getElementById(
+    "closeEditorButton"
+  );
+
+const cancelEditorButton =
+  document.getElementById(
+    "cancelEditorButton"
+  );
+
+const saveItemButton =
+  document.getElementById(
+    "saveItemButton"
+  );
+
+const itemNameInput =
+  document.getElementById(
+    "itemName"
+  );
+
+const itemKanaInput =
+  document.getElementById(
+    "itemKana"
+  );
+
+const itemStockInput =
+  document.getElementById(
+    "itemStock"
+  );
+
+const itemMinimumStockInput =
+  document.getElementById(
+    "itemMinimumStock"
+  );
+
+const itemImageUrlInput =
+  document.getElementById(
+    "itemImageUrl"
+  );
+
+const imagePreview =
+  document.getElementById(
+    "imagePreview"
+  );
+
+
+let editingItemId = null;
+
 
 /* ==========================================
    初期化
@@ -154,33 +222,110 @@ function setupEvents() {
   /* ＋ / − */
 
   inventoryList.addEventListener(
-    "click",
-    event => {
+  "click",
+  event => {
 
-      const button =
-        event.target.closest(
-          ".stock-button"
-        );
+    /* 編集 */
 
-      if (!button) return;
-
-
-      const id =
-        button.dataset.id;
-
-      const amount =
-        Number(
-          button.dataset.amount
-        );
-
-
-      adjustStock(
-        id,
-        amount
+    const editButton =
+      event.target.closest(
+        ".edit-item-button"
       );
 
+
+    if (editButton) {
+
+      openEditItemEditor(
+        editButton.dataset.editId
+      );
+
+      return;
+
     }
-  );
+
+
+    /* ＋ / − */
+
+    const button =
+      event.target.closest(
+        ".stock-button"
+      );
+
+
+    if (!button) return;
+
+
+    const id =
+      button.dataset.id;
+
+
+    const amount =
+      Number(
+        button.dataset.amount
+      );
+
+
+    adjustStock(
+      id,
+      amount
+    );
+
+  }
+);
+
+   /* 商品追加 */
+
+addItemButton.addEventListener(
+  "click",
+  openNewItemEditor
+);
+
+
+/* 編集画面を閉じる */
+
+closeEditorButton.addEventListener(
+  "click",
+  closeEditor
+);
+
+cancelEditorButton.addEventListener(
+  "click",
+  closeEditor
+);
+
+
+/* 背景クリックで閉じる */
+
+editorModal.addEventListener(
+  "click",
+  event => {
+
+    if (
+      event.target === editorModal
+    ) {
+
+      closeEditor();
+
+    }
+
+  }
+);
+
+
+/* 画像プレビュー */
+
+itemImageUrlInput.addEventListener(
+  "input",
+  updateImagePreview
+);
+
+
+/* 保存 */
+
+editorForm.addEventListener(
+  "submit",
+  saveItem
+);
 
 }
 
@@ -495,6 +640,14 @@ function createItemHTML(item) {
         <div class="item-kana">
           ${escapeHTML(item.kana)}
         </div>
+
+        <button
+  class="edit-item-button"
+  type="button"
+  data-edit-id="${escapeHTML(item.id)}"
+>
+  編集
+</button>
 
       </div>
 
@@ -924,5 +1077,357 @@ function escapeHTML(value) {
       /'/g,
       "&#039;"
     );
+/* ==========================================
+   新規商品
+========================================== */
 
+function openNewItemEditor() {
+
+  editingItemId = null;
+
+
+  editorTitle.textContent =
+    "商品追加";
+
+
+  editorForm.reset();
+
+
+  itemStockInput.value = 0;
+
+  itemMinimumStockInput.value = 1;
+
+
+  imagePreview.innerHTML =
+    "画像なし";
+
+
+  editorModal.hidden = false;
+
+
+  setTimeout(
+    () => {
+
+      itemNameInput.focus();
+
+    },
+    100
+  );
+
+}
+
+
+/* ==========================================
+   商品編集
+========================================== */
+
+function openEditItemEditor(id) {
+
+  const item =
+    inventory.find(
+      product =>
+        String(product.id) ===
+        String(id)
+    );
+
+
+  if (!item) return;
+
+
+  editingItemId =
+    String(id);
+
+
+  editorTitle.textContent =
+    "商品編集";
+
+
+  itemNameInput.value =
+    item.name || "";
+
+
+  itemKanaInput.value =
+    item.kana || "";
+
+
+  itemStockInput.value =
+    Number(item.stock) || 0;
+
+
+  itemMinimumStockInput.value =
+    Number(
+      item.minimumStock
+    ) || 0;
+
+
+  itemImageUrlInput.value =
+    item.imageUrl || "";
+
+
+  updateImagePreview();
+
+
+  editorModal.hidden =
+    false;
+
+}
+
+
+/* ==========================================
+   編集画面を閉じる
+========================================== */
+
+function closeEditor() {
+
+  editorModal.hidden =
+    true;
+
+
+  editingItemId =
+    null;
+
+}
+
+
+/* ==========================================
+   画像プレビュー
+========================================== */
+
+function updateImagePreview() {
+
+  const url =
+    itemImageUrlInput
+      .value
+      .trim();
+
+
+  if (!url) {
+
+    imagePreview.innerHTML =
+      "画像なし";
+
+    return;
+
+  }
+
+
+  imagePreview.innerHTML =
+    `
+      <img
+        src="${escapeHTML(url)}"
+        alt=""
+      >
+    `;
+
+
+  const image =
+    imagePreview.querySelector(
+      "img"
+    );
+
+
+  image.addEventListener(
+    "error",
+    () => {
+
+      imagePreview.innerHTML =
+        "画像を読み込めません";
+
+    },
+    {
+      once: true
+    }
+  );
+
+}
+
+
+/* ==========================================
+   商品保存
+========================================== */
+
+async function saveItem(event) {
+
+  event.preventDefault();
+
+
+  const name =
+    itemNameInput
+      .value
+      .trim();
+
+
+  const kana =
+    itemKanaInput
+      .value
+      .trim();
+
+
+  if (!name || !kana) {
+
+    showToast(
+      "商品名とカナを入力してください"
+    );
+
+    return;
+
+  }
+
+
+  const payload = {
+
+    action:
+      editingItemId
+        ? "update"
+        : "create",
+
+    name: name,
+
+    kana: kana,
+
+    stock:
+      Number(
+        itemStockInput.value
+      ) || 0,
+
+    minimumStock:
+      Number(
+        itemMinimumStockInput.value
+      ) || 0,
+
+    imageUrl:
+      itemImageUrlInput
+        .value
+        .trim()
+
+  };
+
+
+  if (editingItemId) {
+
+    payload.id =
+      editingItemId;
+
+  }
+
+
+  saveItemButton.disabled =
+    true;
+
+
+  saveItemButton.textContent =
+    "保存中...";
+
+
+  try {
+
+    const response =
+      await fetch(
+        API_URL,
+        {
+
+          method: "POST",
+
+          body:
+            JSON.stringify(
+              payload
+            )
+
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if (!data.success) {
+
+      throw new Error(
+        data.message ||
+        "保存に失敗しました"
+      );
+
+    }
+
+
+    const savedItem =
+      data.item;
+
+
+    /* 編集 */
+
+    if (editingItemId) {
+
+      const index =
+        inventory.findIndex(
+          item =>
+            String(item.id) ===
+            String(
+              editingItemId
+            )
+        );
+
+
+      if (index !== -1) {
+
+        inventory[index] =
+          savedItem;
+
+      }
+
+    }
+
+
+    /* 新規 */
+
+    else {
+
+      inventory.push(
+        savedItem
+      );
+
+    }
+
+
+    const wasEditing =
+  Boolean(editingItemId);
+
+
+closeEditor();
+
+
+renderInventory();
+
+
+showToast(
+  wasEditing
+    ? "商品を更新しました"
+    : "商品を追加しました"
+);
+
+
+  } catch (error) {
+
+    console.error(error);
+
+
+    showToast(
+      error.message ||
+      "保存に失敗しました"
+    );
+
+
+  } finally {
+
+    saveItemButton.disabled =
+      false;
+
+
+    saveItemButton.textContent =
+      "保存";
+
+  }
+
+}
 }
