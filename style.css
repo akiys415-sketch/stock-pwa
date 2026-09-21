@@ -120,7 +120,7 @@ body {
 .add-item-button {
   border: 0;
 
-  background: #f4a460;
+  background: #b31e23;
 
   color: white;
 
@@ -197,7 +197,7 @@ body {
 
 
 #searchInput:focus {
-  border-color: #f4a460;
+  border-color: #b31e23;
 }
 
 
@@ -238,9 +238,9 @@ body {
 .order-filter-button.active {
   background: #f1dede;
 
-  color: #f4a460;
+  color: #b31e23;
 
-  border-color: #f4a460;
+  border-color: #b31e23;
 
   font-weight: 700;
 }
@@ -358,9 +358,9 @@ body {
 .kana-button.active {
   color: white;
 
-  background: #f4a460;
+  background: #b31e23;
 
-  border-color: #f4a460;
+  border-color: #b31e23;
 
   font-weight: 700;
 }
@@ -661,7 +661,7 @@ body {
 
 
 .stock-button.plus {
-  background: #f4a460;
+  background: #b31e23;
 
   color: white;
 }
@@ -887,7 +887,7 @@ body {
 
 
 .form-group input:focus {
-  border-color: #f4a460;
+  border-color: #b31e23;
 }
 
 
@@ -977,7 +977,7 @@ body {
 .editor-save-button {
   border: 0;
 
-  background: #f4a460;
+  background: #b31e23;
 
   color: white;
 
